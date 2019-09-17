@@ -1,4 +1,5 @@
 import React from 'react';
+import './index.css';
 
 const Todos = ({todos, deleteTodo, updateTodo}) => {
 
@@ -6,9 +7,13 @@ const Todos = ({todos, deleteTodo, updateTodo}) => {
     todos.map(todo => {
       return (
         <div className="collection-item" key={todo.id}>
-          <span>{todo.content}</span>
-          <button onClick={() => {updateTodo(todo.id)}}>Edit</button>
-          <button onClick={() => {deleteTodo(todo.id)}}>Delete</button>
+        <div className="design">
+          <span className="val">{todo.content}</span>
+        </div>
+        <div className="buttons">
+          <button className="button" onClick={() => {updateTodo(todo.id)}}>Edit</button>
+          <button className="button" onClick={() => {deleteTodo(todo.id)}}>Delete</button>
+        </div>
         </div>
       )
     })
@@ -22,3 +27,4 @@ const Todos = ({todos, deleteTodo, updateTodo}) => {
   )
 }
 export default Todos; 
+
