@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import Todos from './Todos'
-import AddTodo from './AddTodo'
+import Todos from './Todos';
+import AddTodo from './AddTodo';
+import './index.css';
 
 class App extends Component {
   state = {
@@ -23,18 +24,27 @@ class App extends Component {
     })
   }
   
-  updateTodo = (id, todo) => {
-    let data = prompt("Enter the changes: ");
-    let todoes = [...data, todo];
-    this.setState({
-        todoes
+  
+  updateTodo = (id) => {
+      console.log('id',id);
+      const {todos} = this.state;
+      let todo = todos.filter(todo => todo.id === id)
+       const index= todos.findIndex((todo)=>{
+        return todo.id === id;
     });
-  }
+    console.log(index)
+    
+    let data = prompt("Enter the changes: ");
+    console.log(data);
+    todos[index].content = data;
+    this.setState({todos});
+   
+  };
   
   render() {
     return (
-      <div className="todo-app container">
-        <h1 className="center blue-text">Todo's</h1>
+      <div className="todo-app">
+        <h1 className="blue-text">Todo's</h1>
         <Todos todos={this.state.todos} deleteTodo={this.deleteTodo}   updateTodo={this.updateTodo}/>
         <AddTodo addTodo={this.addTodo}/>
       </div>
